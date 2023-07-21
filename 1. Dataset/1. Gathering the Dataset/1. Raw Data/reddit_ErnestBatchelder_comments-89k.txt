@@ -1,13 +1,5 @@
 
 
-WARNING:praw:It appears that you are using PRAW in an asynchronous environment.
-It is strongly recommended to use Async PRAW: https://asyncpraw.readthedocs.io.
-See https://praw.readthedocs.io/en/latest/getting_started/multiple_instances.html#discord-bots-and-asynchronous-environments for more info.
-
-WARNING:praw:It appears that you are using PRAW in an asynchronous environment.
-It is strongly recommended to use Async PRAW: https://asyncpraw.readthedocs.io.
-See https://praw.readthedocs.io/en/latest/getting_started/multiple_instances.html#discord-bots-and-asynchronous-environments for more info.
-
 I wonder if a Very Blue State in the US is likely the closest to semi-low racism or homophobia one can kind of get to? Still serious systemic racism in California, but in the bigger picture of things, there are certainly large pockets of overt liberalism, even if it gets more performative at times than substantial. 
 
 I know there are parts of Europe while not being as overtly racist/homophobic as say a deep red state, can still be subtly so. Likely your best bets where you won't run into it too much would be major cities like Amsterdam, Lisbon, London, & Berlin. I've hear that Norwegians are superficially very polite, but can still hold racist attitudes- it's just the culture of civility means it won't be in your face. In Italy now the current government is far right and trying to illegalize gay couples from adopting. 

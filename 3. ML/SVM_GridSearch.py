@@ -2,11 +2,10 @@ import nltk
 import pandas as pd
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, classification_report
-
 
 # Load the CSV file
 input_file = "./0. combined/combined_data.csv"  # Replace 'your_input_file.csv' with the path to your CSV file
@@ -32,20 +31,33 @@ vectorizer = TfidfVectorizer()
 X_train_tfidf = vectorizer.fit_transform(X_train)
 X_val_tfidf = vectorizer.transform(X_val)
 
-# training model
-model = SVC(
-    C=10,
-    class_weight=None,
-    degree=2,
-    gamma=0.1,
-    kernel="rbf",
-)
-model.fit(X_train_tfidf, y_train)
+# Set up the parameter grid for hyperparameter tuning
+param_grid = {
+    "C": [0.01, 0.1, 1, 10, 100],
+    "kernel": ["linear", "poly", "rbf", "sigmoid"],
+    "gamma": ["scale", "auto", 0.001, 0.01, 0.1, 1],
+    "degree": [2, 3, 4, 5],
+    "class_weight": [None, "balanced", {0: 1, 1: 2}],
+}
 
-# testing on validation set
-y_pred = model.predict(X_val_tfidf)
+# Create the SVM model
+svm_model = SVC()
+
+# Initialize GridSearchCV with the parameter grid and the SVM model
+grid_search = GridSearchCV(estimator=svm_model, param_grid=param_grid, cv=5)
+
+# Fit the GridSearchCV to the data to find the best hyperparameters
+grid_search.fit(X_train_tfidf, y_train)
+
+# Access the best hyperparameters and the best model
+best_params = grid_search.best_params_
+best_model = grid_search.best_estimator_
+
+# Use the best model to make predictions and evaluate its performance
+y_pred = best_model.predict(X_val_tfidf)
 
 # Calculate accuracy and other metrics
 accuracy = accuracy_score(y_val, y_pred)
-print(f"Accuracy: {accuracy:.2f}")
+print(f"Best Hyperparameters: {best_params}")
+print(f"Best Model Accuracy: {accuracy:.2f}")
 print(classification_report(y_val, y_pred))

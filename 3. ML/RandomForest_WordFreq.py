@@ -4,9 +4,8 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
-
 
 # Load the CSV file
 input_file = "./0. combined/combined_data.csv"  # Replace 'your_input_file.csv' with the path to your CSV file
@@ -33,12 +32,11 @@ X_train_tfidf = vectorizer.fit_transform(X_train)
 X_val_tfidf = vectorizer.transform(X_val)
 
 # training model
-model = SVC(
-    C=10,
-    class_weight=None,
-    degree=2,
-    gamma=0.1,
-    kernel="rbf",
+model = RandomForestClassifier(
+    n_estimators=1000,
+    min_samples_split=15,
+    min_samples_leaf=1,
+    max_features="sqrt",
 )
 model.fit(X_train_tfidf, y_train)
 
