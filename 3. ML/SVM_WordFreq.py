@@ -12,13 +12,12 @@ from sklearn.metrics import accuracy_score, classification_report
 input_file = "./0. combined/combined_data.csv"  # Replace 'your_input_file.csv' with the path to your CSV file
 df = pd.read_csv(input_file)
 
-# further processing the data, removing stopwords
+# further processing the data, removing stopwords and tokenizing
 stop_words = set(stopwords.words("english"))
 df["processed_text"] = df["text"].apply(
     lambda x: " ".join([word for word in word_tokenize(x) if word not in stop_words])
 )
 
-# tokenizing
 X = df["processed_text"]
 y = df["author"]
 
