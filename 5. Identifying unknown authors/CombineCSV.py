@@ -2,8 +2,8 @@ import os
 import pandas as pd
 
 
-folder_path = "../0. combined/Unknown"
-output_file = "../0. combined/unknown_data.csv"
+folder_path = "./0. combined"
+output_file = "./0. combined/combined_data.csv"
 
 # temp list to store all dataframes
 data_frames = []
