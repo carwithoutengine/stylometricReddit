@@ -8,8 +8,7 @@ from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, classification_report
 
 
-# Load the CSV file
-input_file = "./0. combined/combined_data.csv"  # Replace 'your_input_file.csv' with the path to your CSV file
+input_file = "./0. combined/combined_data.csv"
 df = pd.read_csv(input_file)
 
 # further processing the data, removing stopwords
@@ -24,7 +23,7 @@ y = df["author"]
 
 # splitting into training and validation sets, 80% t, 20% v
 X_train, X_val, y_train, y_val = train_test_split(
-    X, y, test_size=0.2, random_state=1227
+    X, y, test_size=0.295, random_state=1227
 )
 
 # vectorizing data using TFIDF
